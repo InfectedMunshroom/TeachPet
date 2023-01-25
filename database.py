@@ -620,6 +620,8 @@ class scenes():
         label1.place(x=220,y=175)
         label2.place(x=220,y=275)
         entry1.place()
+
+        # Lmao why did you do this
        
         
         
