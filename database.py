@@ -584,64 +584,8 @@ class scenes():
 
 
 
+ 
 
-    def sql_update_attendance(self):
-        obj= mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
-        cursor = obj.cursor()
-        frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
-        sch_no = tk.StringVar()
-        attend = tk.StringVar()
-
-        label1 = tk.Label(frame1,text='Scholar Number',font=('Times New Roman',25),bg='#5534A5')
-        label2 = tk.Label(frame1,text='Attendance',font=('Times New Roman',25),bg='#5534A5')
-        entry1 = tk.Entry(frame1,textvariable=sch_no,font=('Times New Roman',25))
-        entry2 = tk.Entry(frame1,textvariable=attend,font=('Times New Roman',25))
-        def change():
-            alpha = entry1.get()
-            beta = entry2.get()
-
-            try:
-                cursor.execute('update student_attendance set attendance={} where sch_no = {}'.format(beta,alpha))
-                if beta == 'A':
-                    cursor.execute('update student_attendance set total_days=total_days-1 where sch_no = {}'.format(alpha))
-                elif beta == 'P': 
-                    cursour.execute('update student_attendance set total_days=total_days+1 where sch_no = {}'.format(alpha))
-                obj.commit()
-                frame1.destroy()
-                frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
-                def goback():
-                    frame2.destroy()
-                    self.sql_update_attendance()
-                label1 = tk.Label(frame2,bg='#5534A5',font=('Times New Roman',25),text='Successful')
-                button1 = tk.Button(frame2,text='Back',command=goback)
-            except:
-                frame1.destroy()
-                frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
-                def goback():
-                    frame2.destroy()
-                    self.sql_update_attendance()
-                label1 = tk.Label(frame2,bg='#5534A5',font=('Times New Roman',25),text='Error: Please Checked Entered Details')
-                button1 = tk.Button(frame2,text='Back',command=goback)
-        
-        def goback():
-            frame1.destroy()
-            self.scene_update_record()
-        
-        button1 = tk.Button(frame1,text='Enter',font=('Times New Roman'),command=change)
-        button2 = tk.Button(frame1,text='back',command=goback)
-
-        frame1.place(x=0,y=0)
-        label3.place(x=720,y=30)
-        label1.place(x=220,y=175)
-        label2.place(x=220,y=275)
-        entry1.place(x=420,y=175)
-        entry2.place(x=420,y=275)
-        button1.place(x=720,y=700,anchor='center')
-        button2.place(x=50,y=850,anchor='w')
-
-        # Lmao why did you do this
-    
-    '''
     def sql_update_attendance(self):
         obj= mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
         cursor = obj.cursor()
@@ -680,10 +624,18 @@ class scenes():
 
     def sql_update_attendance_attendance(self,schno):
         frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+
+
+
+        frame1.place(x=0,y=0)
     
     def sql_update_attendance_total_days(self,schno):
         frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
-'''
+
+
+
+        frame1.place(x=0,y=0)
+
       
         
         
