@@ -568,7 +568,7 @@ class scenes():
                 sql_update_fees()
             elif bk=='Attendance':
                 frame1.destroy()
-                sql_update_attendance()
+                self.sql_update_attendance()
             elif bk=='Marks':
                 frame1.destroy()
                 sql_update_marks()
@@ -577,9 +577,9 @@ class scenes():
 
 
         frame1.place(x=0,y=0)
-        label1.place(x=720,y=10,anchor='center')
-        optionsmenu.place(x=220,y=450)
-        button1.place(x=320,y=450)
+        label1.place(x=720,y=20,anchor='center')
+        optionsmenu.place(x=220,y=400)
+        button1.place(x=520,y=400)
 
 
 
@@ -607,6 +607,13 @@ class scenes():
                 elif beta == 'P': 
                     cursour.execute('update student_attendance set total_days=total_days+1 where sch_no = {}'.format(alpha))
                 obj.commit()
+                frame1.destroy()
+                frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+                def goback():
+                    frame2.destroy()
+                    self.sql_update_attendance()
+                label1 = tk.Label(frame2,bg='#5534A5',font=('Times New Roman',25),text='Successful')
+                button1 = tk.Button(frame2,text='Back',command=goback)
             except:
                 frame1.destroy()
                 frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
@@ -627,7 +634,10 @@ class scenes():
         label3.place(x=720,y=30)
         label1.place(x=220,y=175)
         label2.place(x=220,y=275)
-        entry1.place()
+        entry1.place(x=420,y=175)
+        entry2.place(x=420,y=275)
+        button1.place(x=720,y=700,anchor='center')
+        button2.place(x=50,y=850,anchor='w')
 
         # Lmao why did you do this
     
