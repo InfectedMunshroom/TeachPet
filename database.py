@@ -629,25 +629,35 @@ class scenes():
         label1 = tk.Label(frame1,text='Attendance',font=('Times New Roman',25),bg='#5534A5',fg='white')
         entry1 = tk.Entry(frame1,font=('Times New Roman',25),textvariable=attend)
 
-        try:
-            cursour.execute('UPDATE student_attendance SET attendance={} WHERE sch_no = {}'.format(entry1.get(),schno))
-        except:
-            frame1.destroy()
-            frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
-            label1 = tk.Label(frame1,text='Error:Please check entered details',font=('Times New Roman',25),bg='#5534A5')
-            def back():
-                frame2.destroy()
-                self.sql_update_attendance_attendance(schno)
-            button1 = tk.Button(frame1,text='Back',command=back)
-            frame2.place(x=0,y=0)
-            label1.place(x=720,y=400,anchor='center')
-            button1.place(x=50,y=700,anchor='w')
+        def execute():
+            try:
+                cursour.execute('UPDATE student_attendance SET attendance={} WHERE sch_no = {}'.format(entry1.get(),schno))
+            except:
+                frame1.destroy()
+                frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+                label1 = tk.Label(frame2,text='Error:Please check entered details',font=('Times New Roman',25),bg='#5534A5')
+                def back():
+                    frame2.destroy()
+                    self.sql_update_attendance_attendance(schno)
+                button1 = tk.Button(frame1,text='Back',command=back)
+                frame2.place(x=0,y=0)
+                label1.place(x=720,y=400,anchor='center')
+                button1.place(x=50,y=700,anchor='w')
 
+        def goback():
+            frame1.destroy()
+            self.sql_update_attendance()
+
+        button1 = tk.Button(frame1,text='Enter',command=execute,font=('Times New Roman',25))
+        button2 = tk.Button(frame1,text='Back',command=goback,font=('Times New Roman',25))
 
         frame1.place(x=0,y=0)
         label1.place(x=500,y=450)
-        entry1.place(x=700,y=450)
-    
+        entry1.place(x=700,y=450)          
+        button1.place(x=720,y=550,anchor='center')
+        button2.place(x=50,y=800,anchor='w')
+
+
     def sql_update_attendance_total_days(self,schno):
         frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
         obj = mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
@@ -656,25 +666,34 @@ class scenes():
 
         label1 = tk.Label(frame1,text='Total Days',font=('Times New Roman',25),bg='#5534A5',fg='white')
         entry1 = tk.Entry(frame1,font=('Times New Roman',25),textvariable=attend)
+        
+        def execute():
+            try:
+                cursour.execute('UPDATE student_attendance SET total_days={} WHERE sch_no = {}'.format(entry1.get(),schno))
+            except:
+                frame1.destroy()
+                frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+                label1 = tk.Label(frame1,text='Error:Please check entered details',font=('Times New Roman',25),bg='#5534A5')
+                def back():
+                    frame2.destroy()
+                    self.sql_update_attendance_attendance(schno)
+                button1 = tk.Button(frame1,text='Back',command=back)
+                frame2.place(x=0,y=0)
+                label1.place(x=720,y=400,anchor='center')
+                button1.place(x=50,y=700,anchor='w')
 
-        try:
-            cursour.execute('UPDATE student_attendance SET total_days={} WHERE sch_no = {}'.format(entry1.get(),schno))
-        except:
+        def goback():
             frame1.destroy()
-            frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
-            label1 = tk.Label(frame1,text='Error:Please check entered details',font=('Times New Roman',25),bg='#5534A5')
-            def back():
-                frame2.destroy()
-                self.sql_update_attendance_attendance(schno)
-            button1 = tk.Button(frame1,text='Back',command=back)
-            frame2.place(x=0,y=0)
-            label1.place(x=720,y=400,anchor='center')
-            button1.place(x=50,y=700,anchor='w')
+            self.sql_update_attendance()
 
+        button1 = tk.Button(frame1,text='Enter',command=execute,font=('Times New Roman',25))
+        button2 = tk.Button(frame1,text='Back',command=goback,font=('Times New Roman',25))
 
         frame1.place(x=0,y=0)
         label1.place(x=500,y=450)
         entry1.place(x=700,y=450)          
+        button1.place(x=720,y=550,anchor='center')
+        button2.place(x=50,y=800,anchor='w')
 
       
         
