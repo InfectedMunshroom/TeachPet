@@ -578,7 +578,7 @@ class scenes():
             elif bk=='Marks':
                 frame1.destroy()
                 sql_update_marks()
-'''  
+  
     def sql_update_attendance(self):
         obj= mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
         cursor = obj.cursor()
@@ -620,7 +620,7 @@ class scenes():
         label1.place(x=220,y=175)
         label2.place(x=220,y=275)
         entry1.place()
- '''       
+       
         
         
         
