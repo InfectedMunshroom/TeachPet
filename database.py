@@ -587,8 +587,6 @@ class scenes():
  
 
     def sql_update_attendance(self):
-        obj= mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
-        cursor = obj.cursor()
         frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
         sch_no = tk.StringVar()
         field = tk.StringVar()
@@ -597,7 +595,7 @@ class scenes():
         entry1 = tk.Entry(frame1,font=('Times New Roman',25),textvariable=sch_no)
 
         def go():
-            ak = optionsmenu.get()
+            ak = field.get()
             bk = entry1.get()
             if ak == 'Attendance':
                 frame1.destroy()
@@ -611,7 +609,7 @@ class scenes():
             self.scene_update_record()
         label1 = tk.Label(frame1,text='Scholar No',font=('Times New Roman',25),bg='#5534A5',fg='white')
         button1 = tk.Button(frame1,font=('Times New Roman',25),command=go)
-        button2 = tk.Buttno(frame1,font=("Times New Roman",25),command=goback)
+        button2 = tk.Button(frame1,font=("Times New Roman",25),command=goback)
 
 
         frame1.place(x=0,y=0)
@@ -624,17 +622,59 @@ class scenes():
 
     def sql_update_attendance_attendance(self,schno):
         frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+        obj = mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
+        cursour = obj.cursor()
+        attend = tk.StringVar()
 
+        label1 = tk.Label(frame1,text='Attendance',font=('Times New Roman',25),bg='#5534A5',fg='white')
+        entry1 = tk.Entry(frame1,font=('Times New Roman',25),textvariable=attend)
+
+        try:
+            cursour.execute('UPDATE student_attendance SET attendance={} WHERE sch_no = {}'.format(entry1.get(),schno))
+        except:
+            frame1.destroy()
+            frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+            label1 = tk.Label(frame1,text='Error:Please check entered details',font=('Times New Roman',25),bg='#5534A5')
+            def back():
+                frame2.destroy()
+                self.sql_update_attendance_attendance(schno)
+            button1 = tk.Button(frame1,text='Back',command=back)
+            frame2.place(x=0,y=0)
+            label1.place(x=720,y=400,anchor='center')
+            button1.place(x=50,y=700,anchor='w')
 
 
         frame1.place(x=0,y=0)
+        label1.place(x=500,y=450)
+        entry1.place(x=700,y=450)
     
     def sql_update_attendance_total_days(self,schno):
         frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+        obj = mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
+        cursour = obj.cursor()
+        attend = tk.StringVar()
 
+        label1 = tk.Label(frame1,text='Total Days',font=('Times New Roman',25),bg='#5534A5',fg='white')
+        entry1 = tk.Entry(frame1,font=('Times New Roman',25),textvariable=attend)
+
+        try:
+            cursour.execute('UPDATE student_attendance SET total_days={} WHERE sch_no = {}'.format(entry1.get(),schno))
+        except:
+            frame1.destroy()
+            frame2 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+            label1 = tk.Label(frame1,text='Error:Please check entered details',font=('Times New Roman',25),bg='#5534A5')
+            def back():
+                frame2.destroy()
+                self.sql_update_attendance_attendance(schno)
+            button1 = tk.Button(frame1,text='Back',command=back)
+            frame2.place(x=0,y=0)
+            label1.place(x=720,y=400,anchor='center')
+            button1.place(x=50,y=700,anchor='w')
 
 
         frame1.place(x=0,y=0)
+        label1.place(x=500,y=450)
+        entry1.place(x=700,y=450)          
 
       
         
