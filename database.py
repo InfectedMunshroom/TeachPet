@@ -451,8 +451,8 @@ class scenes():
             frame1.destroy()
             self.scene1()
         button1 = tk.Button(frame1,text='Delete Record',font=('Times New Roman',25),command=delete)
-        button2 = tk.Button(frame1,text='Update Record',font=('Times New Roman',25))
-        button3 = tk.Button(frame1,text='Back',font=('Times New Roman',25))
+        button2 = tk.Button(frame1,text='Update Record',font=('Times New Roman',25),command=update)
+        button3 = tk.Button(frame1,text='Back',font=('Times New Roman',25),command=back)
 
         frame1.place(x=0,y=0)
         button1.place(x=720,y=350,anchor='center')
