@@ -578,20 +578,52 @@ class scenes():
             elif bk=='Marks':
                 frame1.destroy()
                 sql_update_marks()
-  
+
     def sql_update_attendance(self):
         obj= mysql.connect(host='localhost',user='tester',passwd='1234',database='students')
         cursor = obj.cursor()
-    
-        sch_no = tk.StringVar()
-        attend = tk.StringVar()
         frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
-        label1 = tk.Label(frame1,bg='#5534A5',fg='white',font=('Times New Roman',25),text='Scholar Number')
-        label2 = tk.Label(frame1,bg='#5534A5',fg='white',font=('Times New Roman',25),text='Attendance (P/A)')
-        label3 = tk.Label(frame1,bg='#5534A5',fg='white',font=('Times New Roman',25),text='Update Attendance')
+        sch_no = tk.StringVar()
+        field = tk.StringVar()
+        field.set('Field')
+        optionsmenu = tk.OptionMenu(frame1, field, "Attendance","Total Days")
         entry1 = tk.Entry(frame1,font=('Times New Roman',25),textvariable=sch_no)
-        entry2 = tk.Entry(frame1,font=('Times New Roman',25),textvariable=attend)
 
+        def go():
+            ak = optionsmenu.get()
+            bk = entry1.get()
+            if ak == 'Attendance':
+                frame1.destroy()
+                self.sql_update_attendance_attendance(bk)
+            elif ak == 'Total Days':
+                frame1.destroy()
+                self.sql_update_attendance_total_days(bk)
+
+        def goback():
+            frame1.destroy()
+            self.scene_update_record()
+        label1 = tk.Label(frame1,text='Scholar No',font=('Times New Roman',25),bg='#5534A5',fg='white')
+        button1 = tk.Button(frame1,font=('Times New Roman',25),command=go)
+        button2 = tk.Buttno(frame1,font=("Times New Roman",25),command=goback)
+
+
+        frame1.place(x=0,y=0)
+        label1.place(x=470,y=200)
+        entry1.place(x=970,y=200)
+        optionsmenu.place(x=720,y=300)
+        button1.place(x=720,y=400,anchor='center')
+        button2.place(x=15,y=850,anchor='w')
+
+
+    def sql_update_attendance_attendance(self,schno):
+        frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+    
+    def sql_update_attendance_total_days(self,schno):
+        frame1 = tk.Frame(self.root,bg='#5534A5',height=self.Height,width=self.Width)
+
+
+
+'''
         def change():
             alpha = entry1.get()
             beta = entry2.get()
@@ -622,8 +654,7 @@ class scenes():
         entry1.place()
 
         # Lmao why did you do this
-       
-        
+'''       
         
         
 
